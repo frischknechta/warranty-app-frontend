@@ -2,12 +2,16 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import "./Register.css";
+import productsData from "../../assets/productsData.json";
+
 const Register = () => {
   const [reference, setReference] = useState("");
   const [serial, setSerial] = useState("");
   const [vendor, setVendor] = useState("");
   const [date, setDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [validRef, setValidRef] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,9 +32,10 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="registerPage">
       <div>Register</div>
       <Link to="/check">Go to check</Link>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="reference">
           Product reference
@@ -39,12 +44,35 @@ const Register = () => {
             name="reference"
             id="reference"
             placeholder="Product reference"
+            className={validRef}
             value={reference}
             onChange={(event) => {
               setReference(event.target.value);
             }}
             required
+            onBlur={(event) => {
+              !reference
+                ? setValidRef("")
+                : productsData.find(
+                    (product) => product.reference === reference
+                  )
+                ? setValidRef("valid")
+                : setValidRef("invalid");
+            }}
           />
+          <div>
+            {validRef === "invalid" ? (
+              "This product refrence does not exist!"
+            ) : (
+              <img
+                src={
+                  productsData.find(
+                    (product) => product.reference === reference
+                  )?.image
+                }
+              />
+            )}
+          </div>
         </label>
         <label htmlFor="serial">
           Serial number

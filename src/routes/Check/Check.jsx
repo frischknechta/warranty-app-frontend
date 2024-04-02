@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 
+import "./Check.css";
+
 const Check = () => {
   const [reference, setReference] = useState("");
   const [serial, setSerial] = useState("");
@@ -23,7 +25,7 @@ const Check = () => {
   };
 
   return (
-    <div>
+    <div className="checkPage">
       <div>Check</div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="reference">

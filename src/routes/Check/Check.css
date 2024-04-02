@@ -1,0 +1,22 @@
+.checkPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.checkPage form {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 400px;
+  height: 200px;
+}
+
+.checkPage label {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
