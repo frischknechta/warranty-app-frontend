@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 import "./Check.css";
 
@@ -27,6 +28,7 @@ const Check = () => {
   return (
     <div className="checkPage">
       <div>Check</div>
+      <Link to="/">Go to Register </Link>
       <form onSubmit={handleSubmit}>
         <label htmlFor="reference">
           Product reference

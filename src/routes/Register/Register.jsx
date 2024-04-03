@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Register.css";
 import productsData from "../../assets/productsData.json";
@@ -25,6 +26,7 @@ const Register = () => {
         date: date,
       });
       console.log(response.data);
+      alert("The warranty has been registered for your product!");
     } catch (error) {
       console.log(error.response.data);
       setErrorMessage(error.response.data.message);
@@ -33,7 +35,7 @@ const Register = () => {
 
   return (
     <div className="registerPage">
-      <div>Register</div>
+      <h1>Register your warranty</h1>
       <Link to="/check">Go to check</Link>
 
       <form onSubmit={handleSubmit}>
@@ -48,8 +50,11 @@ const Register = () => {
             value={reference}
             onChange={(event) => {
               setReference(event.target.value);
+              setErrorMessage("");
+              setValidRef("");
             }}
             required
+            minLength={10}
             onBlur={(event) => {
               !reference
                 ? setValidRef("")
@@ -60,20 +65,26 @@ const Register = () => {
                 : setValidRef("invalid");
             }}
           />
-          <div>
-            {validRef === "invalid" ? (
-              "This product refrence does not exist!"
-            ) : (
-              <img
-                src={
-                  productsData.find(
-                    (product) => product.reference === reference
-                  )?.image
-                }
-              />
-            )}
-          </div>
+          {!validRef ? null : validRef === "invalid" ? (
+            <div className={`symbol ${validRef}`}>
+              <FontAwesomeIcon icon={"circle-xmark"} />
+            </div>
+          ) : (
+            <div className={`symbol ${validRef}`}>
+              <FontAwesomeIcon icon={"circle-check"} />
+            </div>
+          )}
         </label>
+        {!validRef ? null : validRef === "invalid" ? (
+          <div className="error">This product reference does not exist!</div>
+        ) : (
+          <img
+            src={
+              productsData.find((product) => product.reference === reference)
+                ?.image
+            }
+          />
+        )}
         <label htmlFor="serial">
           Serial number
           <input
@@ -84,6 +95,7 @@ const Register = () => {
             value={serial}
             onChange={(event) => {
               setSerial(event.target.value);
+              setErrorMessage("");
             }}
             required
           />
@@ -115,9 +127,9 @@ const Register = () => {
             required
           />
         </label>
-        <button>Submit</button>
+        <button disabled={validRef === "invalid" ? true : false}>Submit</button>
+        <div className="error">{errorMessage ? errorMessage : null}</div>
       </form>
-      <div>{errorMessage ? errorMessage : ""}</div>
     </div>
   );
 };
