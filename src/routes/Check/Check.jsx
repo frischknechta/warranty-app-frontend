@@ -4,11 +4,13 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 import "./Check.css";
+import productsData from "../../assets/productsData.json";
 
 const Check = () => {
   const [reference, setReference] = useState("");
   const [serial, setSerial] = useState("");
   const [data, setData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,13 +24,14 @@ const Check = () => {
       setData(response.data);
     } catch (error) {
       console.log(error.response.data);
+      setErrorMessage(error.response.data.message);
     }
   };
 
   return (
     <div className="checkPage">
-      <div>Check</div>
-      <Link to="/">Go to Register </Link>
+      <h1>Check your warranty</h1>
+      <Link to="/">Go to warranty registration </Link>
       <form onSubmit={handleSubmit}>
         <label htmlFor="reference">
           Product reference
@@ -40,6 +43,8 @@ const Check = () => {
             value={reference}
             onChange={(event) => {
               setReference(event.target.value);
+              setErrorMessage("");
+              setData(null);
             }}
             required
           />
@@ -54,25 +59,47 @@ const Check = () => {
             value={serial}
             onChange={(event) => {
               setSerial(event.target.value);
+              setErrorMessage("");
+              setData(null);
             }}
             required
           />
         </label>
         <button>Submit</button>
-      </form>
-      {data ? (
-        <div>
-          <div> Product reference: {data.reference}</div>
-          <div> Product serial number: {data.serialNumber}</div>
-          <div> Product sold by: {data.vendor}</div>
-          <div> Product sold on: {format(data.dateOfSale, "dd MMMM yyyy")}</div>
-          <div>
-            Under warranty until: {format(data.dateOfWarranty, "dd MMMM yyyy")}
+
+        {data ? (
+          <div className="response">
+            <img
+              src={
+                productsData.find((product) => product.reference === reference)
+                  ?.image
+              }
+              alt="Product image"
+            />
+            <div>
+              <span>Product reference:</span> <span>{data.reference}</span>
+            </div>
+            <div>
+              <span>Product serial number:</span>
+              <span>{data.serialNumber}</span>
+            </div>
+            <div>
+              <span>Product sold by:</span>
+              <span>{data.vendor}</span>
+            </div>
+            <div>
+              <span>Product sold on:</span>
+              <span>{format(data.dateOfSale, "dd MMMM yyyy")}</span>
+            </div>
+            <div>
+              <span>Under warranty until:</span>
+              <span>{format(data.dateOfWarranty, "dd MMMM yyyy")}</span>
+            </div>
           </div>
-        </div>
-      ) : (
-        ""
-      )}
+        ) : (
+          <div className="error">{errorMessage ? errorMessage : null}</div>
+        )}
+      </form>
     </div>
   );
 };

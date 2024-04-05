@@ -2,61 +2,51 @@
   {
     "name": "Product 1",
     "reference": "1234567890",
-    "image": "https://placehold.co/400",
-    "serialNumber": "000001"
+    "image": "https://prd.place/200?id=1"
   },
   {
     "name": "Product 2",
     "reference": "0987654321",
-    "image": "http://example.com/image2.jpg",
-    "serialNumber": "000002"
+    "image": "https://prd.place/200?id=2"
   },
   {
     "name": "Product 3",
     "reference": "1357924680",
-    "image": "http://example.com/image3.jpg",
-    "serialNumber": "000003"
+    "image": "https://prd.place/200?id=3"
   },
   {
     "name": "Product 4",
     "reference": "2468135790",
-    "image": "http://example.com/image4.jpg",
-    "serialNumber": "000004"
+    "image": "https://prd.place/200?id=5"
   },
   {
     "name": "Product 5",
     "reference": "9876543210",
-    "image": "http://example.com/image5.jpg",
-    "serialNumber": "000005"
+    "image": "https://prd.place/200?id=7"
   },
   {
     "name": "Product 6",
     "reference": "0123456789",
-    "image": "http://example.com/image6.jpg",
-    "serialNumber": "000006"
+    "image": "https://prd.place/200?id=8"
   },
   {
     "name": "Product 7",
     "reference": "5432109876",
-    "image": "http://example.com/image7.jpg",
-    "serialNumber": "000007"
+    "image": "https://prd.place/200?id=12"
   },
   {
     "name": "Product 8",
     "reference": "8765432109",
-    "image": "http://example.com/image8.jpg",
-    "serialNumber": "000008"
+    "image": "https://prd.place/200?id=38"
   },
   {
     "name": "Product 9",
     "reference": "3216549870",
-    "image": "http://example.com/image9.jpg",
-    "serialNumber": "000009"
+    "image": "https://prd.place/200?id=43"
   },
   {
     "name": "Product 10",
     "reference": "6549873210",
-    "image": "http://example.com/image10.jpg",
-    "serialNumber": "000010"
+    "image": "https://prd.place/200?id=41"
   }
 ]

@@ -14,9 +14,9 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [validRef, setValidRef] = useState("");
 
+  // SUBMIT FUNCTION
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(reference, serial, vendor, date);
 
     try {
       const response = await axios.post("http://localhost:3000/register", {
@@ -27,6 +27,11 @@ const Register = () => {
       });
       console.log(response.data);
       alert("The warranty has been registered for your product!");
+      setReference("");
+      setSerial("");
+      setVendor("");
+      setDate("");
+      setValidRef("");
     } catch (error) {
       console.log(error.response.data);
       setErrorMessage(error.response.data.message);
@@ -36,7 +41,7 @@ const Register = () => {
   return (
     <div className="registerPage">
       <h1>Register your warranty</h1>
-      <Link to="/check">Go to check</Link>
+      <Link to="/check">Go to warranty checker</Link>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="reference">
@@ -55,6 +60,7 @@ const Register = () => {
             }}
             required
             minLength={10}
+            // CHECKING IF REFERENCE IS VALID ACCORDING TO LIST
             onBlur={(event) => {
               !reference
                 ? setValidRef("")
@@ -65,6 +71,7 @@ const Register = () => {
                 : setValidRef("invalid");
             }}
           />
+          {/* VALIDITY INDICATOR (CHECK OR XMARK) */}
           {!validRef ? null : validRef === "invalid" ? (
             <div className={`symbol ${validRef}`}>
               <FontAwesomeIcon icon={"circle-xmark"} />
@@ -75,6 +82,8 @@ const Register = () => {
             </div>
           )}
         </label>
+
+        {/* If ref is invalid, display error, else display product picture */}
         {!validRef ? null : validRef === "invalid" ? (
           <div className="error">This product reference does not exist!</div>
         ) : (
@@ -83,6 +92,7 @@ const Register = () => {
               productsData.find((product) => product.reference === reference)
                 ?.image
             }
+            alt="Product image"
           />
         )}
         <label htmlFor="serial">
@@ -90,6 +100,8 @@ const Register = () => {
           <input
             type="text"
             name="serial"
+            minLength={5}
+            maxLength={6}
             id="serial"
             placeholder="Serial number"
             value={serial}
@@ -120,6 +132,7 @@ const Register = () => {
             type="date"
             name="dateOfSale"
             id="dateOfSale"
+            max={new Date().toISOString().split("T")[0]}
             value={date}
             onChange={(event) => {
               setDate(event.target.value);
