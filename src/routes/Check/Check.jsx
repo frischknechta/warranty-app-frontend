@@ -18,7 +18,7 @@ const Check = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/warranty-check?ref=${reference}&sn=${serial}`
+        `https://site--personal-projects-backend--79sf29g9cmjg.code.run/warranty-check?ref=${reference}&sn=${serial}`
       );
       console.log(response.data);
       setData(response.data);

@@ -19,12 +19,15 @@ const Register = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/register", {
-        ref: reference,
-        sn: serial,
-        vendor: vendor,
-        date: date,
-      });
+      const response = await axios.post(
+        "https://site--personal-projects-backend--79sf29g9cmjg.code.run/register",
+        {
+          ref: reference,
+          sn: serial,
+          vendor: vendor,
+          date: date,
+        }
+      );
       console.log(response.data);
       alert("The warranty has been registered for your product!");
       setReference("");
