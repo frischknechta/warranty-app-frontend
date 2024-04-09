@@ -21,4 +21,14 @@ button {
   font-weight: bold;
   color: inherit;
   padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 2px;
+  -webkit-appearance: none;
+}
+
+input[type="date"] {
+  display: block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
 }
