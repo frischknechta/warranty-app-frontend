@@ -8,9 +8,11 @@ This project is simple warranty registration and warranty check app.
 
 On the registration page, user must enter the product reference which is immediately verified and validated or refused.
 If the reference is correct, the picture of the product is diplayed.
+
 <img src="/public/Valid REF.png" width="300" >
 
 If the reference is incorrect, the form cannot be submited.
+
 <img src="/public/Invalid REF.png" width="300"  >
 
 The other fields are not verified but mendatory, the date cannot be in the future.
