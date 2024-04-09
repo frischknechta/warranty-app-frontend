@@ -82,3 +82,24 @@
   font-weight: 600;
   text-align: justify;
 }
+
+.registerPage .help {
+  margin-left: 10px;
+}
+
+.registerPage .hint {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  width: 220px;
+  flex-direction: column;
+  font-size: 12px;
+  left: 190px;
+  top: -25px;
+  padding: 5px;
+}
+
+.registerPage .help:hover .hint {
+  display: flex;
+}

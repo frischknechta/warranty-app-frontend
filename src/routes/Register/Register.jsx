@@ -48,7 +48,19 @@ const Register = () => {
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="reference">
-          Product reference
+          <span>
+            Product reference
+            <span className="help">
+              <FontAwesomeIcon icon={"circle-question"} />
+              <div className="hint">
+                <span>
+                  For the demo, use the reference numbers 123456789[0 - 9].
+                </span>
+                <span>Ex. 1234567895</span>
+              </div>
+            </span>
+          </span>
+
           <input
             type="text"
             name="reference"

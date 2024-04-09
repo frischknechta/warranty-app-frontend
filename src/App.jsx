@@ -6,8 +6,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCircleCheck,
   faCircleXmark,
+  faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faCircleCheck, faCircleXmark);
+library.add(faCircleCheck, faCircleXmark, faCircleQuestion);
 
 function App() {
   return (
