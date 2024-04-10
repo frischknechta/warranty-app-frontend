@@ -84,23 +84,17 @@
   text-align: justify;
 }
 
-.registerPage .help {
-  margin-left: 10px;
+.registerPage details {
+  width: 90%;
+
+  & summary {
+    list-style: none;
+    text-align: center;
+  }
 }
 
 .registerPage .hint {
-  display: none;
-  position: absolute;
-  background-color: white;
-  border: 1px solid black;
-  width: 220px;
-  flex-direction: column;
   font-size: 12px;
-  left: 190px;
-  top: -25px;
-  padding: 5px;
-}
-
-.registerPage .help:hover .hint {
-  display: flex;
+  margin: 10px auto;
+  text-align: center;
 }
